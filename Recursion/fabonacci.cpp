@@ -1,19 +1,17 @@
 #include<iostream>
 using namespace std;
 
-int fib(int n){
-
-    if(n==0 ) return 0;
-    if(n==1)  return 1;
-    int a= fib(n-1);
-    int b=  fib(n-2);
- int ans =a+b;
- return ans;
+int fab(int n){
+  if(n == 1) return 0;
+    if(n == 2) return 1;
+    return fab(n-1) + fab(n-2); 
 }
 
 int main(){
-    int a=0,b=1;
-    int n=5;
-    cin>>n ;
-  cout<< fib(n);
+  int n ;
+  cout << "enter which term of in fabonachi series ->";
+  cin >> n;
+
+  cout << fab(n);
+
 }

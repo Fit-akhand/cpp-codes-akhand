@@ -1,5 +1,6 @@
 #include<iostream>
-using namespace std;
+using namespace std;  
+
 int pow(int a){
     if(a==0) return 1;
      
@@ -10,5 +11,5 @@ int main(){
     int n;
     cout<< "enter a number->";
     cin>> n;
-    cout <<"power->"<<pow(n);
+    cout <<"power->"<< pow(n);
 }
