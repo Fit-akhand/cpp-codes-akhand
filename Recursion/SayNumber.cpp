@@ -1,19 +1,21 @@
 #include<iostream>
 using namespace std;
 
-int say(int n,string arr[]){
-  if (n==0) return 0;
-  int a=n%10;
-  
-  n=n/10;
-  
-  say(n,arr);
-cout<< arr[a]<<" ";
+void saynumber(int n,string arr[]){
+  if(n==0){
+    return ;
+  }
+  int digit = n%10;
+  n = n/10;
+  saynumber(n,arr);
+  cout << arr[digit] << endl;
 }
+
 int main(){
-    int n;
-    string arr[10]={"zero","one","two","three","four","five","six","seven","eight","nine"};
-    cout<< "enter a number->";
-    cin>> n;
-    say(n,arr);
-}
+  int n;
+  cout << "enter number";
+  cin >> n;
+
+  string arr[10] = {"zero","one","two","three","four","five","six","seven","eight","nine"};
+  saynumber(n,arr);
+  }
