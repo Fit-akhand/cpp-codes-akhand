@@ -46,7 +46,7 @@ private:
     //copy ctor
     Student(const Student &srcobj)  // srcobj => A
     {
-        cout<< "Student parametrize ctor called : " << endl;
+        cout<< "Student B parametrize ctor called : " << endl;
         this->id = srcobj.id;
         this->age = srcobj.age;
         this->name = srcobj.name;
@@ -91,6 +91,7 @@ int main(){
     cout<< A.name <<endl;
     // cout << A.gf << endl;   //not accesssable
 
+    Student B(A);
     A.sleep();
     cout << A.getgpa() << endl;
     A.setgpa(4.5);
