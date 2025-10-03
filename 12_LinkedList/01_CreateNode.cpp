@@ -83,7 +83,7 @@ void InsertAtPoint(int value,int position,Node *&head,Node *&tail){
     else{
         Node *newnode = new Node(value);
         Node *temp = head;
-        for(int i=1;i < position-2;i++){
+        for(int i=1;i <= position-2;i++){
             temp = temp ->next;
         }  
         newnode->next = temp->next;
