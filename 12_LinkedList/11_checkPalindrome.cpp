@@ -22,14 +22,21 @@ Node *MidNode(Node*&head){
        return slow;
 }
 
-Node *reverseLL(Node *head, Node *prev) {
-    if (head == NULL) {
+Node *reverseLL(Node *&head,Node *prev){
+    
+    if(head == NULL){
         return prev;
     }
 
     Node *forward = head->next;
-    head->next = prev;
-    return reverseLL(forward, head);
+
+    Node *&current = head;
+
+    current->next = prev;
+
+    prev = current;
+    head = forward;
+    return reverseLL(head,prev);
 }
 
 int getSize(Node *head){
@@ -41,7 +48,7 @@ int getSize(Node *head){
     return count;
 }
 
-bool palindrome(Node *&head){
+bool palindromre(Node *&head){
     // find length
     int length = getSize(head);
     // find mid
@@ -65,8 +72,8 @@ bool palindrome(Node *&head){
         else{
             return false;
         }
+        return true;
     }
-    return true;
 }
 
 void print(Node *&head){
@@ -84,15 +91,15 @@ int main() {
     Node *first = new Node(10);
     Node *second = new Node(20);
     Node *third = new Node(30);
-    // Node *fourth = new Node(30);
+    Node *fourth = new Node(30);
     Node *fifth = new Node(20);
     Node *sixth = new Node(10);
 
 
     first->next = second;
     second->next = third;
-    third->next = fifth;
-    // fourth->next = fifth;
+    third->next = fourth;
+    fourth->next = fifth;
     fifth->next = sixth;
     sixth->next = NULL;
 
@@ -103,7 +110,7 @@ int main() {
 
     print(head);
     
-    cout << "is palindrome : "<<palindrome(head);
+    cout << "is palindrome : " << palindromre(head);
 
     return 0;
 }
