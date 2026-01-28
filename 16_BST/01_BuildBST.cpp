@@ -1,4 +1,5 @@
 #include<iostream>
+#include<queue>
 using namespace std;
 
 class Node{
@@ -61,6 +62,64 @@ void inorder(Node*root){
     inorder(root->right); 
 }
 
+void levelordertraversal(Node*root){
+    queue<Node*> q;
+    q.push(root);
+    q.push(NULL);
+
+    while(!q.empty()){
+        Node*front = q.front();
+        q.pop();
+        if(front == NULL){
+            cout << endl;
+            if(!q.empty()){
+                q.push(NULL);
+            }
+        }
+        else{
+            cout<< root->val <<" ";
+            if(front->left){
+                q.push(front->left);
+            }
+            if(front->right){
+                q.push(front->right);
+            }
+        }
+    }
+}
+
+void minBST(Node*root){
+    if(root->left == NULL){
+        cout<<"min -> " << root->val;
+        return;
+    }
+    minBST(root->left);
+}
+
+void maxBST(Node*root){
+    if(root->right == NULL){
+        cout<<"max -> " << root->val;
+        return;
+    }
+    maxBST(root->right);
+}
+
+void searchBST(Node*root,int value){
+    if(root == NULL){
+        cout <<"Value not match";
+        return;
+    }
+    if(root->val == value){
+        cout<< "value gooted : " << root->val; 
+    }
+    else if(root->val < value){
+        searchBST(root->right,value);
+    }
+    else{
+        searchBST(root->left,value);
+    }
+}
+
 int main(){
     
     Node *root = NULL;
@@ -68,10 +127,22 @@ int main(){
 
     cout << endl;
 
-    cout << " preorder :";
-    preorder(root);
+    // cout << " preorder :";
+    // preorder(root);
     cout << " inorder :";
     inorder(root);
+    cout << endl;
+    
+    minBST(root);
+    cout << endl;
+
+    maxBST(root);
+    cout << endl;
+
+    cout<< "Value uou want to search : " ;
+    int k;
+    cin >> k;
+    searchBST(root,k);
 
     return 0;
 }
