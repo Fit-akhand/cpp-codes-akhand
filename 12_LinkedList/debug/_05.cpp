@@ -2,15 +2,15 @@
 
 class Node {
     public:
-    int data;
-    Node* next;
+        int data;
+        Node* next;
 };
 
 Node* mergeSortedLists(Node* list1, Node* list2) {
+
     Node* mergedList = new Node();
     Node* current = mergedList;
-
-    while (list1 != nullptr && list2 != nullptr) {
+    while(list1 != nullptr && list2 != nullptr){
         if (list1->data < list2->data) {
             current->next = list1;
             list1 = list1->next;
@@ -20,13 +20,17 @@ Node* mergeSortedLists(Node* list1, Node* list2) {
         }
         current = current->next;
     }
-
-    if (list1 != nullptr) {
+    
+    while(list1 != nullptr) {
         current->next = list1;
-    } else {
-        current->next = list2;
+        list1 = list1->next;
+        current = current->next;
     }
-
+    while(list2 != nullptr){
+        current->next = list2;
+        list2 = list2->next;
+        current = current->next;
+    }
     return mergedList->next;
 }
 
