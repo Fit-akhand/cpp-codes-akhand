@@ -1,91 +1,63 @@
 #include <iostream>
+#include <list>
 using namespace std;
-
-struct Node {
-    int data;
-    Node* next;
-};
-
-// insert at beginning
-void insertAtHead(Node*& head, int val) {
-    Node* newNode = new Node{val, head};
-    head = newNode;
-}
-
-// insert at end
-void insertAtEnd(Node*& head, int val) {
-    Node* newNode = new Node{val, NULL};
-
-    if (head == NULL) {
-        head = newNode;
-        return;
-    }
-
-    Node* temp = head;
-    while (temp->next != NULL) {
-        temp = temp->next;
-    }
-    temp->next = newNode;
-}
-
-// delete first occurrence
-void deleteNode(Node*& head, int val) {
-    if (head == NULL) return;
-
-    if (head->data == val) {
-        Node* t = head;
-        head = head->next;
-        delete t;
-        return;
-    }
-
-    Node* temp = head;
-    while (temp->next != NULL && temp->next->data != val) {
-        temp = temp->next;
-    }
-
-    if (temp->next != NULL) {
-        Node* t = temp->next;
-        temp->next = t->next;
-        delete t;
-    }
-}
-
-// print list
-void printList(Node* head) {
-    Node* temp = head;
-    while (temp != NULL) {
-        cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-    cout << "NULL" << endl;
-}
-
-// length
-int length(Node* head) {
-    int count = 0;
-    while (head != NULL) {
-        count++;
-        head = head->next;
-    }
-    return count;
-}
 
 int main() {
 
-    Node* head = NULL;
+    list<int> l;
 
-    insertAtHead(head, 10);
-    insertAtHead(head, 5);
-    insertAtEnd(head, 20);
-    insertAtEnd(head, 30);
+    // push
+    l.push_back(10);
+    l.push_back(20);
+    l.push_front(5);
 
-    printList(head);
+    // begin and end (traverse)
+    cout << "Elements: ";
+    for (auto it = l.begin(); it != l.end(); it++) {
+        cout << *it << " ";
+    }
+    cout << endl;
 
-    deleteNode(head, 20);
-    printList(head);
+    // size
+    cout << "Size: " << l.size() << endl;
 
-    cout << "Length: " << length(head) << endl;
+    // front and back
+    cout << "Front: " << l.front() << endl;
+    cout << "Back: " << l.back() << endl;
+
+    // insert
+    auto it = l.begin();
+    advance(it, 1);
+    l.insert(it, 15);
+
+    // erase
+    it = l.begin();
+    advance(it, 2);
+    l.erase(it);
+
+    // pop
+    l.pop_front();
+    l.pop_back();
+
+    // remove (delete by value)
+    l.push_back(30);
+    l.push_back(40);
+    l.remove(30);
+
+    // empty check
+    if (l.empty())
+        cout << "List is empty" << endl;
+    else
+        cout << "List is not empty" << endl;
+
+    // swap
+    list<int> l2 = {100, 200};
+    l.swap(l2);
+
+    // clear
+    l.clear();
+
+    cout << "After clear, size: " << l.size() << endl;
 
     return 0;
 }
